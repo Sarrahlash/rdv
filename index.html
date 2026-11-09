@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Sarrah Lash Studio — Cotonou</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #FDFCFA;
+  --bg2:     #F5F1EA;
+  --bg3:     #EDE9E0;
+  --noir:    #141210;
+  --noir2:   #1E1A16;
+  --gold:    #B8924A;
+  --gold2:   #8A6A2E;
+  --gold-lt: #D4AA6A;
+  --text:    #1E1A16;
+  --sub:     #6B5D55;
+  --border:  rgba(139,106,60,0.18);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: #100D0B;
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--gold); }
+
+/* ══ NAV — no burger, liens visibles ══ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 5vw;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+  background: rgba(16,13,11,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(212,168,67,0.15);
+  transition: box-shadow 0.3s;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 700;
+  color: #F5ECD9; letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+.nav-logo em { font-style: italic; color: var(--gold); font-weight: 300; margin-left: 4px; font-size: 17px; }
+.nav-links {
+  display: flex; gap: 28px; list-style: none;
+  align-items: center;
+}
+.nav-links a, .nav-links span {
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(245,236,217,0.5); text-decoration: none; font-weight: 400;
+  transition: color 0.2s; white-space: nowrap; cursor: pointer;
+}
+.nav-links a:hover, .nav-links span:hover { color: #D4A843; }
+.nav-rdv {
+  background: transparent; color: #D4A843; border: 1px solid #D4A843;
+  font-family: 'Outfit', sans-serif; font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  padding: 10px 20px; cursor: pointer; transition: all 0.25s;
+  font-weight: 500; border: none; text-decoration: none;
+  display: inline-block; white-space: nowrap; flex-shrink: 0;
+}
+.nav-rdv:hover { background: var(--gold); color: var(--noir); }
+
+/* sur mobile : compacter les liens */
+@media(max-width: 700px) {
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: 9.5px; letter-spacing: 0.12em; }
+  .nav-rdv { font-size: 9px; padding: 8px 12px; }
+  .nav-logo { font-size: 17px; }
+}
+@media(max-width: 480px) {
+  .nav-links li:nth-child(3),
+  .nav-links li:nth-child(4) { display: none; }
+}
+
+/* ══ HERO — fond sombre pour lisibilité maximale ══ */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; padding: 110px 6vw 80px;
+  position: relative; overflow: hidden;
+  background: var(--noir2);
+}
+.hero-deco {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(184,146,74,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 90% 80%, rgba(184,146,74,0.07) 0%, transparent 55%);
+}
+.hero-eyeline {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 13px; letter-spacing: 0.5em; color: var(--gold-lt);
+  text-transform: uppercase; margin-bottom: 28px; position: relative;
+  opacity: 0; animation: fadeUp 0.9s 0.2s forwards;
+}
+/* NOM BOUTIQUE : blanc crème sur fond sombre = lisibilité parfaite */
+.hero-name {
+  font-family: 'Cormorant Garamond', serif; font-weight: 700;
+  font-size: clamp(42px, 8vw, 72px); line-height: 0.88;
+  color: #FBF5EA;
+  letter-spacing: 0.04em; position: relative;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.4);
+  opacity: 0; animation: fadeUp 0.9s 0.35s forwards;
+}
+.hero-name em {
+  display: block; font-style: italic; font-weight: 300;
+  font-size: clamp(22px, 4vw, 36px); color: var(--gold-lt);
+  letter-spacing: 0.22em; margin-top: 10px;
+}
+.hero-div {
+  display: flex; align-items: center; gap: 16px;
+  margin: 30px auto; width: fit-content;
+  opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+}
+.hero-div .ln { width: 70px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-lt)); }
+.hero-div .ln.r { background: linear-gradient(270deg, transparent, var(--gold-lt)); }
+.hero-div .dm { width: 7px; height: 7px; background: var(--gold-lt); transform: rotate(45deg); box-shadow: 0 0 10px rgba(212,170,106,0.5); }
+.hero-loc {
+  font-size: 11.5px; letter-spacing: 0.38em; text-transform: uppercase;
+  color: rgba(251,245,234,0.5); margin-bottom: 52px; position: relative;
+  opacity: 0; animation: fadeUp 0.9s 0.55s forwards;
+}
+.hero-ctas {
+  display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; position: relative;
+  opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
+}
+/* bouton principal : crème sur noir */
+.btn-cream {
+  background: #FBF5EA; color: var(--noir);
+  font-family: 'Outfit', sans-serif; font-size: 11px;
+  letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600;
+  padding: 16px 40px; border: none; cursor: pointer;
+  transition: all 0.25s; text-decoration: none; display: inline-block;
+}
+.btn-cream:hover { background: var(--gold-lt); transform: translateY(-2px); }
+/* bouton secondaire : contour crème */
+.btn-outline-cream {
+  background: transparent; color: #FBF5EA;
+  border: 1.5px solid rgba(251,245,234,0.45);
+  font-family: 'Outfit', sans-serif; font-size: 11px;
+  letter-spacing: 0.25em; text-transform: uppercase; font-weight: 400;
+  padding: 16px 40px; cursor: pointer; transition: all 0.25s;
+  text-decoration: none; display: inline-block;
+}
+.btn-outline-cream:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
+
+.hero-scroll {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0; animation: fadeUp 0.9s 1.1s forwards;
+}
+.hero-scroll span { font-size: 9px; letter-spacing: 0.3em; color: rgba(251,245,234,0.4); text-transform: uppercase; }
+.scroll-ln { width: 1px; height: 38px; background: linear-gradient(180deg, var(--gold-lt), transparent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+/* ══ PROMOS ══ */
+#promos {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.promo {
+  padding: 36px 5vw; background: var(--bg3);
+  border-right: 1px solid var(--border);
+  position: relative; overflow: hidden; transition: background 0.3s;
+}
+.promo:last-child { border-right: none; }
+.promo:hover { background: var(--bg3); }
+.promo::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.5;
+}
+.promo-icon { font-size: 26px; margin-bottom: 14px; }
+.promo-tag { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: #8A6A2E; margin-bottom: 8px; font-weight: 600; }
+.promo-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: #1A0F0A; margin-bottom: 10px; letter-spacing: 0.02em; }
+.promo-text { font-size: 13px; color: #4A3A2A; line-height: 1.7; font-weight: 300; }
+.promo-text strong { color: var(--noir); font-weight: 600; }
+
+/* ══ COMMONS ══ */
+section { padding: 86px 5vw; }
+.s-eye { font-family:Georgia,serif; font-style:italic; font-size:10px; letter-spacing:0.35em; color:var(--gold); text-transform:uppercase; margin-bottom:8px; display:block; }
+.s-title { font-family:Georgia,serif; font-weight:400; font-size:clamp(18px,2.8vw,26px); color:var(--noir); line-height:1.2; }
+.s-title em { font-style:italic; font-weight:300; color:var(--gold); }
+.s-sub { font-size:14px; color:var(--sub); margin-top:14px; max-width:480px; line-height:1.75; font-weight:300; }
+
+/* ══ TARIFS ══ */
+#tarifs { background: var(--bg); }
+.tarifs-wrap { max-width: 860px; margin: 0 auto; }
+.tarifs-hd { margin-bottom: 52px; }
+
+.cat-block { margin-bottom: 44px; }
+.cat-header { display:flex; align-items:center; gap:16px; margin-bottom:14px; }
+.cat-title {
+  font-family: 'Outfit', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: #3D2B1F; white-space: nowrap;
+}
+.cat-line { flex:1; height:1px; background:var(--border); }
+
+.tarif-item {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 13px 0; border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: padding-left 0.2s; gap: 16px;
+}
+.tarif-item:hover { padding-left: 6px; }
+.tarif-item:last-child { border-bottom: none; }
+.ti-left { flex: 1; }
+.ti-name { font-size: 15px; color: #1A0F0A; font-weight: 500; line-height: 1.3; }
+.ti-desc { font-size: 12px; color: #6B5040; margin-top: 3px; font-style: italic; line-height: 1.5; }
+.ti-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; }
+.ti-tag {
+  font-size: 10px; color: #5C3D1E; border: 1px solid rgba(92,61,30,0.35);
+  padding: 3px 10px; border-radius: 20px; font-weight: 500; letter-spacing: 0.04em;
+}
+.ti-price {
+  font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600;
+  color: #1A0F0A; white-space: nowrap; flex-shrink: 0; padding-top: 2px;
+}
+
+.rempl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px; }
+.rc {
+  background: var(--bg2); border: 1px solid var(--border);
+  padding: 22px 14px; text-align:center; border-radius:2px; transition:all 0.25s;
+}
+.rc:hover { border-color:var(--gold); transform:translateY(-3px); }
+.rc-wk { font-size:9.5px; letter-spacing:0.28em; text-transform:uppercase; color:var(--sub); margin-bottom:8px; }
+.rc-pr { font-family:Georgia,serif; font-size:24px; font-weight:400; color:var(--noir); }
+.rc-pr.free { color:var(--gold2); font-style:italic; font-size:22px; }
+
+/* ══ GALERIE ══ */
+#galerie { background: var(--bg2); }
+.gal-hd { margin-bottom: 46px; }
+.gal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.gal-item {
+  position:relative; overflow:hidden; aspect-ratio:3/4;
+  background:var(--bg3); cursor:pointer; border:1px solid var(--border);
+}
+.gal-ph {
+  width:100%; height:100%; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:10px; transition:background 0.3s;
+}
+.ic { font-size:28px; opacity:0.3; }
+.lb { font-size:10px; text-transform:uppercase; letter-spacing:0.22em; color:var(--sub); opacity:0.55; }
+.gal-ov {
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, transparent 50%, rgba(20,18,16,0.72));
+  opacity:0; transition:opacity 0.3s;
+  display:flex; align-items:flex-end; padding:16px;
+}
+.gal-item:hover .gal-ov { opacity:1; }
+.gal-tag { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#F5ECD9; font-weight:500; }
+.gal-note { text-align:center; margin-top:34px; font-family:Georgia,serif; font-size:18px; color:var(--sub); font-style:italic; }
+
+/* ══ RÉSERVATION ══ */
+#reservation { background: var(--bg); }
+.rdv-wrap { max-width: 680px; margin:0 auto; }
+.rdv-hd { margin-bottom:46px; }
+.rdv-form { display:flex; flex-direction:column; gap:18px; }
+.f-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.f-grp { display:flex; flex-direction:column; gap:8px; }
+.f-grp label { font-size:9.5px; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold2); font-weight:600; }
+.f-grp input, .f-grp select, .f-grp textarea {
+  background:var(--bg2); border:1px solid var(--border);
+  color:var(--text); font-family:Outfit,sans-serif;
+  font-size:14px; font-weight:300;
+  padding:13px 15px; outline:none; transition:border-color 0.2s;
+  -webkit-appearance:none; border-radius:0;
+}
+.f-grp select {
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8924A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 14px center; cursor:pointer;
+}
+.f-grp input:focus, .f-grp select:focus, .f-grp textarea:focus { border-color:var(--gold); }
+.f-grp input::placeholder, .f-grp textarea::placeholder { color:var(--sub); opacity:0.5; }
+.f-grp textarea { resize:vertical; min-height:90px; }
+.f-note { font-size:12px; color:var(--sub); line-height:1.65; }
+.f-note span { color:var(--gold2); font-weight:600; }
+.btn-submit {
+  background:#D4A843; color:#100D0B; border:none;
+  padding:16px 44px; font-family:Outfit,sans-serif;
+  font-size:11px; letter-spacing:0.28em; text-transform:uppercase;
+  font-weight:500; cursor:pointer; transition:all 0.25s; align-self:flex-start;
+}
+.btn-submit:hover { background:var(--gold); color:var(--noir); transform:translateY(-2px); }
+.f-success {
+  display:none; text-align:center; padding:48px 32px;
+  border:1px solid var(--border); background:var(--bg2);
+}
+.f-success .ok { font-size:44px; margin-bottom:14px; }
+.f-success h3 { font-family:Georgia,serif; font-size:30px; color:var(--noir); margin-bottom:10px; font-weight:700; }
+.f-success p { font-size:14px; color:var(--sub); }
+
+/* ══ CONTACT ══ */
+#contact { background: var(--bg2); }
+.ct-inner { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
+.ct-hd { margin-bottom:34px; }
+.ct-blocks { display:flex; flex-direction:column; gap:26px; }
+.ct-bl { display:flex; gap:16px; align-items:flex-start; }
+.ct-ic { font-size:20px; flex-shrink:0; margin-top:2px; }
+.ct-lbl { font-size:9.5px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold2); margin-bottom:5px; font-weight:600; }
+.ct-txt { font-size:14px; color:var(--text); line-height:1.65; font-weight:300; }
+.ct-txt a { color:var(--gold2); text-decoration:none; font-weight:500; }
+.cond-box { background:var(--bg); border:1px solid var(--border); padding:30px; }
+.cond-ttl { font-family:Georgia,serif; font-size:22px; color:var(--noir); font-weight:700; margin-bottom:20px; }
+.cond-list { display:flex; flex-direction:column; gap:11px; }
+.cond-r { display:flex; gap:10px; font-size:13px; color:var(--sub); line-height:1.5; font-weight:300; }
+.cond-r::before { content:'◆'; color:var(--gold); font-size:7px; margin-top:5px; flex-shrink:0; }
+
+/* ══ FOOTER ══ */
+footer {
+  background:#141010; border-top:1px solid rgba(212,168,67,0.15);
+  padding:34px 5vw;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
+}
+.ft-logo { font-family:Georgia,serif; font-size:20px; font-weight:700; color:#F5ECD9; }
+.ft-logo em { font-style:italic; font-weight:300; color:var(--gold-lt); margin-left:4px; }
+.ft-copy { font-size:11px; color:rgba(245,236,217,0.38); letter-spacing:0.07em; }
+.ft-soc { display:flex; gap:12px; }
+.ft-soc a {
+  width:36px; height:36px; border:1px solid rgba(255,255,255,0.1);
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; text-decoration:none; transition:all 0.2s;
+}
+.ft-soc a:hover { border-color:var(--gold-lt); transform:translateY(-2px); }
+
+/* ══ REVEAL ══ */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.d1 { transition-delay:0.1s; }
+.d2 { transition-delay:0.2s; }
+.d3 { transition-delay:0.3s; }
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:768px) {
+  #promos { grid-template-columns:1fr; }
+  .promo { border-right:none; border-bottom:1px solid var(--border); }
+  .f-row { grid-template-columns:1fr; }
+  .ct-inner { grid-template-columns:1fr; gap:40px; }
+  .gal-grid { grid-template-columns:repeat(2,1fr); }
+  .rempl-grid { grid-template-columns:1fr; }
+  footer { flex-direction:column; text-align:center; }
+  .btn-submit { width:100%; text-align:center; }
+}
+@media(max-width:480px) {
+  section { padding:60px 5vw; }
+  .gal-grid { grid-template-columns:1fr; }
+  .hero-ctas { flex-direction: column; width: 100%; }
+  .btn-cream, .btn-outline-cream { text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="mainNav">
+  <div class="nav-logo">SARRAH <em>Lash</em></div>
+  <ul class="nav-links">
+    <li><span onclick="document.getElementById('tarifs').scrollIntoView({behavior:'smooth'})">Tarifs</span></li>
+  </ul>
+  <button class="nav-rdv" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Prendre RDV</button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-deco"></div>
+  <h1 class="hero-name">SARRAH <em>Lash Studio</em></h1>
+  <div class="hero-div">
+    <div class="ln"></div><div class="dm"></div><div class="ln r"></div>
+  </div>
+
+  <div class="hero-ctas">
+    <button class="btn-cream" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Prendre rendez-vous</button>
+    <button class="btn-outline-cream" onclick="document.getElementById('tarifs').scrollIntoView({behavior:'smooth'})">Voir les tarifs</button>
+  </div>
+  <div class="hero-scroll">
+    <span>Découvrir</span>
+    <div class="scroll-ln"></div>
+  </div>
+</section>
+
+<!-- ══ PROMOS ══ -->
+<div id="promos">
+  <div class="promo reveal">
+    <div class="promo-icon">💎</div>
+    <div class="promo-tag">✦ Offre exclusive</div>
+    <div class="promo-name">Pack Fidélité</div>
+    <div class="promo-text">Payez votre pose + 1er remplissage d'avance et bénéficiez d'un <strong>tarif réduit garanti</strong>.</div>
+  </div>
+  <div class="promo reveal d2">
+    <div class="promo-icon">💕</div>
+    <div class="promo-tag">✦ Parrainage</div>
+    <div class="promo-name">Offre Marraine</div>
+    <div class="promo-text">Venez avec une amie et profitez toutes les deux de <strong>−1 000 FCFA</strong> sur votre pose. Offre valable pendant <strong>1 mois</strong>.</div>
+  </div>
+</div>
+
+<!-- ══ TARIFS ══ -->
+<section id="tarifs">
+  <div class="tarifs-wrap">
+    <div class="tarifs-hd reveal">
+      <span class="s-eye">Nos prestations</span>
+      <h2 class="s-title">Tarifs des <em>poses</em></h2>
+      <p class="s-sub">Chaque pose est adaptée à la forme naturelle de vos yeux. Contact : <strong>0191927380</strong></p>
+    </div>
+
+    <!-- CLUSTERS LASH -->
+    <div class="cat-block reveal">
+      <div class="cat-header">
+        <div class="cat-title">Clusters Lash</div>
+        <div class="cat-line"></div>
+      </div>
+      <div style="background:rgba(184,146,74,0.07);border:1px solid rgba(184,146,74,0.2);padding:12px 16px;margin-bottom:12px;border-radius:1px;">
+        <div style="font-size:11.5px;color:var(--sub);line-height:1.65;font-style:italic;">
+          💡 <strong style="color:var(--noir);font-style:normal;">C'est quoi les Clusters ?</strong><br>
+          Des bouquets de cils prêts à poser, sans colle permanente — idéal pour un effet volume express, une soirée ou un essai avant une pose complète. <strong style="color:var(--noir);font-style:normal;">Tenue 1 à 2 semaines.</strong> <strong style="color:var(--noir);font-style:normal;">À ne pas confondre avec les extensions cil à cil.</strong>
+        </div>
+      </div>
+      <div class="tarif-item">
+        <div class="ti-left">
+          <div class="ti-name">Clusters Lash</div>
+          <div class="ti-desc">Toutes les formes disponibles · Pose rapide express</div>
+        </div>
+        <div class="ti-price">4 000 FCFA</div>
+      </div>
+    </div>
+
+    <!-- CLASSIQUE -->
+    <div class="cat-block reveal">
+      <div class="cat-header">
+        <div class="cat-title">Classique</div>
+        <div class="cat-line"></div>
+      </div>
+      <div class="tarif-item">
+        <div class="ti-left">
+          <div class="ti-name">Classique</div>
+        </div>
+        <div class="ti-price">5 000 FCFA</div>
+      </div>
+    </div>
+
+    <!-- HYBRIDE -->
+    <div class="cat-block reveal">
+      <div class="cat-header">
+        <div class="cat-title">Hybride</div>
+        <div class="cat-line"></div>
+      </div>
+      <div class="tarif-item">
+        <div class="ti-left">
+          <div class="ti-name">Hybride Classique</div>
+          <div class="ti-tags">
+            <span class="ti-tag">Cat Eyes</span>
+            <span class="ti-tag">Doll Eyes</span>
+            <span class="ti-tag">Wispy</span>
+            <span class="ti-tag">Wet Look</span>
+          </div>
+        </div>
+        <div class="ti-price">6 000 FCFA</div>
+      </div>
+      <div class="tarif-item">
+        <div class="ti-left">
+          <div class="ti-name">Hybride Effet Liner</div>
+          <div class="ti-desc">Forme Cat Eyes / Courbures spéciales M ou L</div>
+        </div>
+        <div class="ti-price">6 000 FCFA</div>
+      </div>
+    </div>
+
+    <!-- VOLUME / MEGA -->
+    <div class="cat-block reveal">
+      <div class="cat-header">
+        <div class="cat-title">Volume / Méga</div>
+        <div class="cat-line"></div>
+      </div>
+      <div class="tarif-item">
+        <div class="ti-left">
+          <div class="ti-name">Volume Classique</div>
+          <div class="ti-tags">
+            <span class="ti-tag">Cat Eyes</span>
+            <span class="ti-tag">Doll Eyes</span>
+            <span class="ti-tag">Wispy</span>
+            <span class="ti-tag">Wet Look</span>
+          </div>
+        </div>
+        <div class="ti-price">8 000 FCFA</div>
+      </div>
+      <div class="tarif-item">
+        <div class="ti-left">
+          <div class="ti-name">Volume Effet Liner</div>
+          <div class="ti-desc">Forme Cat Eyes / Courbures spéciales M ou L</div>
+        </div>
+        <div class="ti-price">8 000 FCFA</div>
+      </div>
+    </div>
+
+    <!-- EFFETS SPÉCIAUX PREMIUM -->
+    <div class="cat-block reveal">
+      <div class="cat-header">
+        <div class="cat-title">Effets Spéciaux Premium</div>
+        <div class="cat-line"></div>
+      </div>
+      <div class="tarif-item">
+        <div class="ti-left">
+          <div class="ti-name">Wispy Intense</div>
+          <div class="ti-desc">Effet déstructuré avec pointes — Style Star / Kim K</div>
+        </div>
+        <div class="ti-price">10 000 FCFA</div>
+      </div>
+      <div class="tarif-item">
+        <div class="ti-left">
+          <div class="ti-name">Wet Look Prononcé</div>
+          <div class="ti-desc">Effet mascara mouillé avec bouquets fermés et denses</div>
+        </div>
+        <div class="ti-price">10 000 FCFA</div>
+      </div>
+    </div>
+
+    <!-- REMPLISSAGE -->
+    <div class="cat-block reveal">
+      <div class="cat-header">
+        <div class="cat-title">Remplissage</div>
+        <div class="cat-line"></div>
+      </div>
+      <div class="rempl-grid">
+        <div class="rc"><div class="rc-wk">1 semaine</div><div class="rc-pr free">Offert 💫</div></div>
+        <div class="rc"><div class="rc-wk">2 semaines</div><div class="rc-pr">2 000 F</div></div>
+        <div class="rc"><div class="rc-wk">3 semaines</div><div class="rc-pr">3 000 F</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALERIE ══ -->
+
+
+<!-- ══ RÉSERVATION ══ -->
+<section id="reservation">
+  <div class="rdv-wrap" style="max-width:900px;">
+    <div class="rdv-hd reveal">
+      <span class="s-eye">Prendre rendez-vous</span>
+      <h2 class="s-title">Réserver <em>votre pose</em></h2>
+      <p class="s-sub">Choisissez votre date et créneau. Vous pouvez aussi appeler le <strong>0191927380</strong>.</p>
+    </div>
+
+    <!-- SOIR + JOURNÉE : deux colonnes sur la même ligne -->
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px;align-items:stretch;">
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-top:4px solid var(--gold);padding:16px 14px;display:flex;flex-direction:column;">
+        <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#6B4A12;font-weight:700;margin-bottom:8px;">🌙 Tous les soirs</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:#1A0F0A;line-height:1.1;margin-bottom:8px;">20h – 22h</div>
+        <div style="font-size:13px;color:#3D2B1F;line-height:1.55;">Réservez en ligne : choisissez votre date dans le calendrier ci-dessous.</div>
+      </div>
+
+      <div style="background:#F1F8F3;border:1px solid rgba(37,160,80,0.3);border-top:4px solid #25D366;padding:16px 14px;display:flex;flex-direction:column;">
+        <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#1B6B3A;font-weight:700;margin-bottom:8px;">☀️ En journée</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:#1A0F0A;line-height:1.1;margin-bottom:8px;">Sur demande</div>
+        <div style="font-size:13px;color:#3D2B1F;line-height:1.55;margin-bottom:12px;"><strong style="font-weight:700;color:#1A0F0A;">1 à 2 jours libres</strong> par semaine, de <strong style="font-weight:700;color:#1A0F0A;">12h à 20h</strong>. Écrivez-moi pour savoir lesquels.</div>
+        <a href="https://wa.me/2290191927380?text=Bonjour+Sarrah+%F0%9F%8C%B8+je+voudrais+savoir+si+vous+etes+disponible+en+journee+cette+semaine+%2812h-20h%29"
+          style="margin-top:auto;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:#fff;text-decoration:none;padding:11px 8px;font-size:13px;font-family:'Outfit',sans-serif;font-weight:600;" target="_blank">
+          💬 Contacter
+        </a>
+      </div>
+
+    </div>
+
+    <div class="rdv-form reveal" id="rdvForm">
+
+      <!-- ÉTAPE 1 : DATE -->
+      <div id="step1">
+        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold2);font-weight:600;margin-bottom:14px;">Étape 1 — Choisir une date</div>
+        <div id="calendarWrap" style="margin-bottom:20px;"></div>
+        <div id="dateSelected" style="display:none">
+          <div style="font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold2);font-weight:600;margin-bottom:10px;">Étape 2 — Choisir un créneau</div>
+          <div id="slotsWrap" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;"></div>
+
+        </div>
+      </div>
+
+      <!-- ÉTAPE 2 : INFOS -->
+      <div id="step2" style="display:none">
+        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold2);font-weight:600;margin-bottom:14px;">Étape 3 — Vos informations</div>
+        <div style="background:var(--bg2);border:1px solid var(--border);padding:12px 16px;margin-bottom:18px;font-size:13px;color:var(--sub);">
+          📅 <span id="chosenSlotDisplay" style="color:var(--noir);font-weight:500;"></span>
+          <button onclick="backToStep1()" style="float:right;background:none;border:none;color:var(--gold2);font-size:11px;cursor:pointer;text-decoration:underline;font-family:Outfit,sans-serif;">Modifier</button>
+        </div>
+        <div class="f-row">
+          <div class="f-grp">
+            <label>Prénom *</label>
+            <input type="text" placeholder="ex : Aminata" id="f-name">
+          </div>
+          <div class="f-grp">
+            <label>Nom *</label>
+            <input type="text" placeholder="ex : Kouassi" id="f-lastname">
+          </div>
+        </div>
+        <div class="f-grp" style="margin-top:18px;">
+          <label>Numéro WhatsApp *</label>
+          <input type="tel" placeholder="+229 XX XX XX XX" id="f-phone">
+        </div>
+        <div class="f-grp" style="margin-top:18px;">
+          <label>Type de pose *</label>
+          <select id="f-pose">
+            <option value="">Choisir une pose</option>
+            <optgroup label="— Clusters Lash">
+              <option>Clusters Lash — Pose express, toutes formes (4 000 FCFA)</option>
+            </optgroup>
+            <optgroup label="— Classique">
+              <option>Classique (5 000 FCFA)</option>
+            </optgroup>
+            <optgroup label="— Hybride">
+              <option>Hybride Classique — Cat Eyes / Doll / Wispy / Wet Look (6 000 FCFA)</option>
+              <option>Hybride Effet Liner — Courbures M ou L (6 000 FCFA)</option>
+            </optgroup>
+            <optgroup label="— Volume / Méga">
+              <option>Volume Classique — Cat Eyes / Doll / Wispy / Wet Look (8 000 FCFA)</option>
+              <option>Volume Effet Liner — Courbures M ou L (8 000 FCFA)</option>
+            </optgroup>
+            <optgroup label="— Effets Spéciaux Premium">
+              <option>Wispy Intense — Style Star / Kim K (10 000 FCFA)</option>
+              <option>Wet Look Prononcé — Bouquets denses (10 000 FCFA)</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="f-grp" style="margin-top:18px;">
+          <label>Message (optionnel)</label>
+          <textarea placeholder="Précisez vos préférences…" id="f-msg"></textarea>
+        </div>
+        <div class="f-note" style="margin-top:14px;">⚠️ <span>Acompte obligatoire</span> pour valider · Venir <span>sans maquillage</span> · Accompagnateurs bienvenus</div>
+        <button class="btn-submit" style="margin-top:18px;" onclick="submitForm()">Réserver →</button>
+      </div>
+    </div>
+
+    <div class="f-success" id="formSuccess"></div>
+
+
+    <!-- Lien admin discret -->
+    <!-- PANNEAU ADMIN -->
+    <div id="adminPanel" style="display:none;margin-bottom:28px;">
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:24px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--noir);">🔐 Mes RDV</div>
+          <button onclick="closeAdmin()" style="background:none;border:none;font-size:18px;cursor:pointer;color:var(--sub);">✕</button>
+        </div>
+        <div style="font-size:12px;color:var(--sub);margin-bottom:16px;line-height:1.6;background:rgba(184,146,74,0.07);padding:10px 14px;border-left:3px solid var(--gold);">
+          Dès qu'une cliente réserve le <strong style="color:var(--noir);">20h–22h</strong>, ce jour est automatiquement <strong style="color:var(--noir);">grisé et bloqué</strong> pour toutes les autres.
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:14px;margin-bottom:16px;">
+          <div style="font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;font-weight:600;">RDV enregistrés</div>
+          <div id="adminBookings" style="display:flex;flex-direction:column;gap:8px;max-height:280px;overflow-y:auto;"></div>
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:14px;">
+          <div style="font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:600;">Libérer un créneau</div>
+          <div style="font-size:11px;color:var(--sub);margin-bottom:10px;">Si une cliente annule, sélectionne la date pour libérer le créneau.</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <input type="date" id="admin-date" style="background:var(--bg);border:1px solid var(--border);padding:10px 14px;font-family:'Outfit',sans-serif;font-size:14px;outline:none;color:var(--text);flex:1;">
+            <button onclick="cancelBooking()" style="background:#8B2020;color:#fff;border:none;padding:10px 18px;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;">Libérer</button>
+          </div>
+        </div>
+      </div>
+
+    <div id="adminEntry" style="position:fixed;bottom:0;right:0;z-index:9999;opacity:0;width:30px;height:30px;">
+      <button onclick="showAdminEntry()" style="background:none;border:none;width:30px;height:30px;cursor:pointer;"></button>
+    </div>
+    <div id="adminCodeBox" style="display:none;max-width:300px;margin:12px auto 0;background:var(--bg2);border:1px solid var(--border);padding:20px;text-align:center;">
+      <div style="font-size:11px;color:var(--sub);margin-bottom:12px;letter-spacing:0.15em;">CODE ADMIN</div>
+      <input id="adminCodeInput" type="password" placeholder="••••" maxlength="10"
+        style="width:100%;background:var(--bg);border:1px solid var(--border);padding:10px;font-size:18px;text-align:center;outline:none;font-family:Outfit,sans-serif;letter-spacing:0.3em;color:var(--noir);"
+        onkeydown="if(event.key==='Enter') checkAdminCode()">
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <button onclick="checkAdminCode()" style="flex:1;background:var(--noir);color:#F5ECD9;border:none;padding:10px;font-family:Outfit,sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;">Entrer</button>
+        <button onclick="document.getElementById('adminCodeBox').style.display='none'" style="background:none;border:1px solid var(--border);padding:10px 14px;cursor:pointer;color:var(--sub);font-size:13px;">✕</button>
+      </div>
+      <div id="adminCodeError" style="color:#C0392B;font-size:11px;margin-top:8px;display:none;">Code incorrect, réessayez.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="ct-inner">
+    <div class="reveal">
+      <div class="ct-hd">
+        <span class="s-eye">Nous trouver</span>
+        <h2 class="s-title">Contact & <em>infos</em></h2>
+      </div>
+      <div class="ct-blocks">
+
+        <div class="ct-bl">
+          <div class="ct-ic">📞</div>
+          <div><div class="ct-lbl">Téléphone / WhatsApp</div><div class="ct-txt"><a href="tel:0191927380">0191927380</a></div></div>
+        </div>
+        <div class="ct-bl">
+          <div class="ct-ic">📩</div>
+          <div><div class="ct-lbl">Réservation</div><div class="ct-txt">Message privé ou formulaire<br><a href="#">Instagram · WhatsApp</a></div></div>
+        </div>
+        <div class="ct-bl">
+          <div class="ct-ic">⏰</div>
+          <div><div class="ct-lbl">Disponibilité</div><div class="ct-txt">Sur rendez-vous · 7j/7</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="cond-box reveal d2">
+      <div class="cond-ttl">✨ À savoir avant votre RDV</div>
+      <div class="cond-list">
+
+        <div class="cond-r">
+          <span>💄</span>
+          <div><strong style="color:var(--noir);font-weight:600;">Venez sans maquillage</strong><br>
+          <span style="font-size:12px;color:var(--sub);">Pas de mascara ni d'eye-liner — pour une pose optimale et une meilleure tenue.</span></div>
+        </div>
+
+        <div class="cond-r">
+          <span>💰</span>
+          <div><strong style="color:var(--noir);font-weight:600;">Un acompte pour confirmer</strong><br>
+          <span style="font-size:12px;color:var(--sub);">Un petit acompte est demandé à la réservation pour bloquer votre créneau.</span></div>
+        </div>
+
+        <div class="cond-r">
+          <span>👁️</span>
+          <div><strong style="color:var(--noir);font-weight:600;">Une pose sur-mesure pour vous</strong><br>
+          <span style="font-size:12px;color:var(--sub);">Chaque pose est adaptée à la forme naturelle de vos yeux pour un résultat unique et sublimé.</span></div>
+        </div>
+
+        <div class="cond-r">
+          <span>👯‍♀️</span>
+          <div><strong style="color:var(--noir);font-weight:600;">Vous pouvez venir accompagnée</strong><br>
+          <span style="font-size:12px;color:var(--sub);">Amies, sœurs, collègues — tout le monde est le bienvenu 🌸</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="ft-logo">SARRAH <em>Lash Studio</em></div>
+  <div class="ft-copy">© 2026 · Cotonou<br>📸 @di_sarrah &nbsp;·&nbsp; 🎵 Sarrah 🌸 &nbsp;·&nbsp; 👻 sarrah3</div>
+  <div class="ft-soc">
+    <a href="https://www.instagram.com/di_sarrah" target="_blank" title="Instagram @di_sarrah">📸</a>
+    <a href="https://wa.me/2290191927380" title="WhatsApp" target="_blank">💬</a>
+    <a href="https://www.tiktok.com/@sarrah" target="_blank" title="TikTok Sarrah 🌸">🎵</a>
+    <a href="https://www.snapchat.com/add/sarrah3" target="_blank" title="Snapchat sarrah3">👻</a>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Nav shadow
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').style.boxShadow =
+    window.scrollY > 50 ? '0 2px 24px rgba(26,22,20,0.09)' : 'none';
+});
+
+// ═══════════════════════════════════════
+// SYSTÈME DE RÉSERVATION INTELLIGENT
+// ═══════════════════════════════════════
+
+const MAX_PER_DAY = 3;
+const SLOT_DURATION = 2;
+const ADMIN_CODE = '1234';
+
+// ── BASE DE DONNÉES PARTAGÉE (Firebase Realtime Database) ──
+// Colle ici l'adresse de ta base, ex : 'https://sarrah-lash-default-rtdb.firebaseio.com'
+const DB_URL = 'https://sarrah-e4266-default-rtdb.europe-west1.firebasedatabase.app';
+
+// Dates prises : { '2026-11-09': { t: 1730000000000 } }  (aucune donnée personnelle stockée)
+let _taken = {};
+try { _taken = JSON.parse(localStorage.getItem('sls_taken') || '{}'); } catch(e) {}
+
+async function loadData() {
+  if (!DB_URL) return;
+  try {
+    const res = await fetch(DB_URL + '/taken.json?ts=' + Date.now(), { cache: 'no-store' });
+    if (res.ok) { _taken = (await res.json()) || {}; }
+  } catch(e) { /* hors ligne : on garde la dernière liste connue */ }
+}
+
+// Réserve la date pour TOUT LE MONDE. Retourne 'ok', 'taken' ou 'error'.
+async function claimDate(dateStr) {
+  if (!DB_URL) {
+    if (_taken[dateStr]) return 'taken';
+    _taken[dateStr] = { t: Date.now() };
+    try { localStorage.setItem('sls_taken', JSON.stringify(_taken)); } catch(e) {}
+    return 'ok';
+  }
+  try {
+    const res = await fetch(DB_URL + '/taken/' + dateStr + '.json', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ t: Date.now() })
+    });
+    if (res.ok) { _taken[dateStr] = { t: Date.now() }; return 'ok'; }
+    if (res.status === 401 || res.status === 403) { await loadData(); return 'taken'; }
+    return 'error';
+  } catch(e) { return 'error'; }
+}
+
+function getBookings() {
+  const out = {};
+  Object.keys(_taken).forEach(d => { out[d + '_20'] = _taken[d]; });
+  return out;
+}
+function getRestDays() {
+  try { return JSON.parse(localStorage.getItem('sls_restdays') || '[]'); } catch(e) { return []; }
+}
+function saveRestDays(d) {
+  try { localStorage.setItem('sls_restdays', JSON.stringify(d)); } catch(e) {}
+}
+function getDaysOff() { return getRestDays(); }
+function saveDaysOff(d) { saveRestDays(d); }
+function saveBookings() {}
+
+function pad(n) { return n < 10 ? '0'+n : ''+n; }
+
+// Vérifie si une date est un jour de repos déclaré
+function isRestDay(dateStr) { return getRestDays().includes(dateStr); }
+
+// Un seul créneau par jour : 20h-22h
+// Dès que quelqu'un réserve → ce jour est bloqué pour tout le monde
+function generateSlots(dateStr) {
+  return [{ label: '20h00 – 22h00', key: dateStr + '_20', hour: 20 }];
+}
+
+// Nombre total de RDV sur une date
+function countBookingsForDate(dateStr) {
+  return Object.keys(getBookings()).filter(k => k.startsWith(dateStr + '_')).length;
+}
+
+// Vérifie si un créneau précis est déjà pris
+function isSlotTaken(key) { return !!getBookings()[key]; }
+
+// Un jour est plein dès qu'une seule réservation existe ce jour
+function isDayFull(dateStr) {
+  return isSlotTaken(dateStr + '_20');
+}
+
+// ── CALENDRIER ──
+let selectedDate = null;
+let selectedSlot = null;
+let currentMonth = new Date();
+
+function buildCalendar() {
+  const wrap = document.getElementById('calendarWrap');
+  if (!wrap) return;
+  const daysOff = getDaysOff();
+  const bookings = getBookings();
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  const year = currentMonth.getFullYear();
+  const month = currentMonth.getMonth();
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month+1, 0);
+  const startDow = (firstDay.getDay() + 6) % 7; // lundi = 0
+
+  const monthNames = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  const dayNames = ['L','M','M','J','V','S','D'];
+
+  let html = `
+  <div style="background:var(--bg2);border:1px solid var(--border);padding:20px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <button onclick="prevMonth()" style="background:none;border:1px solid var(--border);width:32px;height:32px;cursor:pointer;font-size:16px;color:var(--sub);">‹</button>
+      <div style="font-family:Georgia,serif;font-size:20px;font-weight:700;color:var(--noir);">${monthNames[month]} ${year}</div>
+      <button onclick="nextMonth()" style="background:none;border:1px solid var(--border);width:32px;height:32px;cursor:pointer;font-size:16px;color:var(--sub);">›</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:6px;">
+      ${dayNames.map(d => `<div style="text-align:center;font-size:10px;letter-spacing:0.1em;color:var(--sub);padding:4px 0;font-weight:500;">${d}</div>`).join('')}
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;">`;
+
+  // Empty cells before first day
+  for (let i = 0; i < startDow; i++) {
+    html += `<div></div>`;
+  }
+
+  for (let d = 1; d <= lastDay.getDate(); d++) {
+    const dateObj = new Date(year, month, d);
+    dateObj.setHours(0,0,0,0);
+    const dateStr = year + '-' + pad(month+1) + '-' + pad(d);
+    const isPast = dateObj < today;
+    const isDayOff = false; // les jours de repos restent disponibles (avec + de créneaux)
+    const isRest = getRestDays().includes(dateStr);
+    const isFull = isDayFull(dateStr);
+    const isSelected = selectedDate === dateStr;
+    const isToday = dateObj.getTime() === today.getTime();
+
+    let bg = 'var(--bg)'; let color = 'var(--noir)'; let border = '1px solid transparent';
+    let cursor = 'pointer'; let title = '';
+
+    if (isPast) { bg='transparent'; color='rgba(107,93,85,0.3)'; cursor='default'; }
+    else if (isDayOff) { bg='rgba(212,168,67,0.15)'; color='var(--gold2)'; cursor='pointer'; border='1px solid rgba(212,168,67,0.4)'; title='Jour de repos — disponible toute la journée'; }
+    else if (isFull) { bg='rgba(139,106,60,0.08)'; color='rgba(107,93,85,0.4)'; cursor='not-allowed'; title='Complet'; }
+    else if (isSelected) { bg='var(--noir)'; color='#F5ECD9'; border='1px solid var(--noir)'; }
+    else if (isToday) { border='1px solid var(--gold)'; }
+
+    const disabled = isPast || isFull; // les jours de repos sont cliquables (créneaux élargis)
+    const onclick = disabled ? '' : `onclick="selectDate('${dateStr}')"`;
+
+    const fullBadge = isFull && !isPast ? '<br><span style="font-size:7px;color:rgba(139,80,80,0.7);letter-spacing:0.05em;">Réservé</span>' : '';
+    html += `<div ${onclick} title="${title}" style="text-align:center;padding:8px 4px;font-size:13px;background:${bg};color:${color};border:${border};cursor:${cursor};font-weight:${isSelected?'600':'300'};transition:all 0.15s;border-radius:1px;">${d}${fullBadge}</div>`;
+  }
+
+  html += `</div>
+    <div style="display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--sub);"><div style="width:12px;height:12px;background:rgba(139,106,60,0.08);"></div> Réservé</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--sub);"><div style="width:12px;height:12px;border:1px solid var(--gold);"></div> Aujourd'hui</div>
+    </div>
+  </div>`;
+
+  wrap.innerHTML = html;
+}
+
+function prevMonth() {
+  currentMonth.setMonth(currentMonth.getMonth()-1);
+  buildCalendar();
+}
+function nextMonth() {
+  currentMonth.setMonth(currentMonth.getMonth()+1);
+  buildCalendar();
+}
+
+async function selectDate(dateStr) {
+  selectedDate = dateStr;
+  selectedSlot = null;
+  buildCalendar();
+  buildSlots(dateStr);
+  document.getElementById('dateSelected').style.display = 'block';
+  await loadData();            // vérifie en direct si la date vient d'être prise
+  buildCalendar();
+  buildSlots(dateStr);
+}
+
+// ── CRÉNEAUX ──
+function buildSlots(dateStr) {
+  const wrap = document.getElementById('slotsWrap');
+  if (!wrap) return;
+  const slots = generateSlots(dateStr);
+  const dObj = new Date(dateStr + 'T00:00:00');
+  const dateLabel = dObj.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
+
+  wrap.innerHTML = slots.map(s => {
+    const taken = isSlotTaken(s.key);
+    const sel = selectedSlot === s.key;
+    if (taken) {
+      return `<div style="padding:13px 18px;border:1px solid rgba(200,100,100,0.2);background:rgba(200,100,100,0.04);color:rgba(150,100,100,0.5);font-size:13px;cursor:not-allowed;display:flex;justify-content:space-between;align-items:center;">
+        <span>${s.label}</span>
+        <span style="font-size:10px;letter-spacing:0.08em;color:rgba(180,80,80,0.6);">✗ Complet</span>
+      </div>`;
+    }
+    const borderCol = sel ? 'var(--noir)' : 'var(--border)';
+    const bgCol = sel ? 'var(--noir)' : 'var(--bg2)';
+    const txtCol = sel ? '#F5ECD9' : 'var(--noir)';
+    const btnBg = sel ? 'var(--gold)' : 'var(--noir)';
+    const btnTxt = sel ? 'var(--noir)' : '#F5ECD9';
+    return '<div onclick="selectSlot(\'' + s.key + '\',\'' + s.label + '\',\'' + dateLabel + '\')" style="padding:13px 18px;border:1px solid ' + borderCol + ';background:' + bgCol + ';color:' + txtCol + ';font-size:13px;cursor:pointer;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center;">'
+      + '<span style="font-weight:500;">' + s.label + '</span>'
+      + '<span style="background:' + btnBg + ';color:' + btnTxt + ';padding:5px 14px;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-family:Outfit,sans-serif;">Réserver →</span>'
+      + '</div>';
+  }).join('');
+}
+
+function selectSlot(key, label, dateLabel) {
+  selectedSlot = key;
+  buildSlots(selectedDate);
+  // Afficher étape 2
+  document.getElementById('chosenSlotDisplay').textContent = dateLabel + ' · ' + label;
+  document.getElementById('step1').style.display = 'none';
+  document.getElementById('step2').style.display = 'block';
+}
+
+function backToStep1() {
+  selectedSlot = null;
+  document.getElementById('step1').style.display = 'block';
+  document.getElementById('step2').style.display = 'none';
+}
+
+// ── SOUMISSION ──
+async function submitForm() {
+  const n   = document.getElementById('f-name').value.trim();
+  const ln  = document.getElementById('f-lastname').value.trim();
+  const p   = document.getElementById('f-phone').value.trim();
+  const ps  = document.getElementById('f-pose').value;
+  const msg = document.getElementById('f-msg').value.trim();
+
+  if (!selectedDate || !selectedSlot) { alert('Merci de choisir une date et un créneau.'); return; }
+  if (!n || !ln || !p || !ps) { alert('Merci de remplir tous les champs obligatoires (*)'); return; }
+
+  const btn = document.querySelector('#step2 .btn-submit');
+  const btnLabel = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = 'Vérification…'; }
+  const result = await claimDate(selectedDate);
+  if (btn) { btn.disabled = false; btn.textContent = btnLabel; }
+  if (result === 'taken') {
+    alert('Cette date vient d\'être réservée par une autre personne. Merci d\'en choisir une autre.');
+    backToStep1();
+    buildCalendar();
+    buildSlots(selectedDate);
+    return;
+  }
+  if (result === 'error') {
+    alert('Connexion impossible pour le moment. Vérifiez votre réseau et réessayez.');
+    return;
+  }
+  const slotDisplay = document.getElementById('chosenSlotDisplay').textContent;
+
+  // Formspree backup email
+  fetch('https://formspree.io/f/xvznkgza', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ prenom: n, whatsapp: p, pose: ps, creneau: slotDisplay, message: msg })
+  });
+
+  // Afficher écran de confirmation avec bouton WhatsApp propre
+  document.getElementById('rdvForm').style.display = 'none';
+
+  // Construire lien WhatsApp simple
+  const msgCourt = 'Bonjour Sarrah, RDV ' + slotDisplay + ' - ' + n;
+  const waUrl = 'https://wa.me/2290191927380?text=' + encodeURIComponent(msgCourt);
+
+  document.getElementById('formSuccess').innerHTML = `
+    <div class="ok">✨</div>
+    <h3>Demande enregistrée !</h3>
+    <p style="margin-bottom:24px;">Dernière étape : appuyez sur le bouton ci-dessous pour m'envoyer votre confirmation sur WhatsApp.</p>
+    <a href="${waUrl}" 
+      style="display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;
+             text-decoration:none;padding:16px 32px;font-family:Outfit,sans-serif;
+             font-size:13px;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;
+             transition:all 0.2s;border-radius:4px;" target="_blank">
+      <span style="font-size:20px;">💬</span> Envoyer sur WhatsApp
+    </a>
+    <p style="margin-top:16px;font-size:12px;color:var(--sub);">Je confirme votre RDV dans les 24h 🌸</p>
+  `;
+  document.getElementById('formSuccess').style.display = 'block';
+}
+
+// ── ADMIN ──
+function showAdminEntry() {
+  const box = document.getElementById('adminCodeBox');
+  box.style.display = box.style.display === 'none' ? 'block' : 'none';
+  if (box.style.display === 'block') {
+    setTimeout(() => document.getElementById('adminCodeInput').focus(), 100);
+  }
+}
+function checkAdminCode() {
+  const entered = document.getElementById('adminCodeInput').value;
+  const errEl   = document.getElementById('adminCodeError');
+  if (entered !== ADMIN_CODE) {
+    errEl.style.display = 'block';
+    document.getElementById('adminCodeInput').value = '';
+    return;
+  }
+  errEl.style.display = 'none';
+  document.getElementById('adminCodeBox').style.display = 'none';
+  document.getElementById('adminEntry').style.display = 'none';
+  openAdmin();
+}
+function openAdmin() {
+  const panel = document.getElementById('adminPanel');
+  panel.style.display = 'block';
+  panel.scrollIntoView({behavior:'smooth'});
+  renderDaysOff();
+  renderAdminBookings();
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('admin-date').min = today;
+}
+function closeAdmin() {
+  document.getElementById('adminPanel').style.display = 'none';
+}
+function addDayOff() {
+  const d = document.getElementById('admin-date').value;
+  if (!d) return;
+  const days = getRestDays();
+  if (!days.includes(d)) { days.push(d); saveRestDays(days); }
+  renderDaysOff();
+  buildCalendar();
+}
+function removeDayOff(d) {
+  const days = getRestDays().filter(x => x !== d);
+  saveRestDays(days);
+  renderDaysOff();
+  buildCalendar();
+}
+function renderDaysOff() {
+  const list = document.getElementById('daysOffList');
+  const days = getRestDays();
+  if (!days.length) { list.innerHTML = '<span style="font-size:12px;color:var(--sub);font-style:italic;">Aucun jour bloqué</span>'; return; }
+  list.innerHTML = days.sort().map(d => {
+    const dObj = new Date(d + 'T00:00:00');
+    const label = dObj.toLocaleDateString('fr-FR', {weekday:'short', day:'numeric', month:'short'});
+    return '<div style="display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);padding:6px 12px;font-size:12px;color:var(--noir);">\n      ' + label + '\n      <button onclick="removeDayOff(\'' + d + '\')" style="background:none;border:none;color:var(--gold2);cursor:pointer;font-size:14px;line-height:1;">×</button>\n    </div>';
+  }).join('');
+}
+function renderAdminBookings() {
+  const el = document.getElementById('adminBookings');
+  if (!el) return;
+  const dates = Object.keys(_taken).sort();
+  if (!dates.length) { el.innerHTML = '<span style="font-size:12px;color:var(--sub);font-style:italic;">Aucune date réservée</span>'; return; }
+  el.innerHTML = dates.map(d => {
+    const label = new Date(d + 'T12:00:00').toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
+    return '<div style="background:var(--bg);border:1px solid var(--border);padding:10px 14px;font-size:12px;color:var(--text);">📅 <strong style="color:var(--noir)">' + label + '</strong> — 20h–22h</div>';
+  }).join('') + '<div style="font-size:11px;color:var(--sub);margin-top:8px;">Les noms et numéros arrivent sur ton WhatsApp et par email.</div>';
+}
+
+// Init
+buildCalendar();
+loadData().then(() => { buildCalendar(); if (selectedDate) buildSlots(selectedDate); });
+setInterval(async () => {
+  await loadData();
+  buildCalendar();
+  if (selectedDate && document.getElementById('step1').style.display !== 'none') buildSlots(selectedDate);
+}, 15000);
+
+
+async function cancelBooking() {
+  const d = document.getElementById('admin-date').value;
+  if (!d) { alert('Choisissez une date'); return; }
+  await loadData();
+  if (!_taken[d]) { alert('Cette date n\'est pas réservée'); return; }
+  if (!confirm('Libérer le ' + d + ' ?')) return;
+  if (!DB_URL) { delete _taken[d]; try { localStorage.setItem('sls_taken', JSON.stringify(_taken)); } catch(e) {} }
+  else {
+    try {
+      const res = await fetch(DB_URL + '/taken/' + d + '.json', { method: 'DELETE' });
+      if (!res.ok) { alert('Pour libérer cette date, supprime-la dans la console Firebase (Realtime Database > taken).'); return; }
+      delete _taken[d];
+    } catch(e) { alert('Connexion impossible'); return; }
+  }
+  renderAdminBookings();
+  buildCalendar();
+  alert('✅ Date libérée');
+}
+</script>
+</body>
+</html>
